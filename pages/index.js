@@ -1,8 +1,5 @@
 import Head from "next/head";
 
-import Input from "../components/Input"
-// import './style.css'
-
 export default function Home() {
   return (
     <div className="container">
@@ -16,7 +13,6 @@ export default function Home() {
         <h1 className="title">
           HELLO THERE <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        <Input />
       </main>
     </div>
   );
