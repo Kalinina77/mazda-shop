@@ -91,21 +91,41 @@ img {
   /* margin-left: auto;
   margin-right: auto; */
   display: flex;
-  justify-content: space-around;
-  padding: 5% 10%;
+  flex-wrap: wrap;
+  padding: 30px 50px;
+}
+
+.account-main-block {
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: row;
+}
+
+.FavoriteBlock{
+  display: flex;
+  width: 100%;
+
+  
 }
 
 .userBlock{
-width: 30%;
+/* width: 30%; */
 min-width: 200px;
+flex-grow: 0;
+margin-right: 40px;
 }
 
 .orderBlock{
 flex-direction: column;
 display: flex;
-min-width: 600px;
+min-width: 500px;
 align-items: center;
-margin-left: 100px;
+/* margin-left: 100px; */
+}
+
+.confBlock {
+  max-width: 400px;
+
 }
 
 .orderButton{
@@ -129,10 +149,9 @@ margin-left: 100px;
   background-color: rgba(46, 46, 46, 0.438);
 }
 
-/* .profileImage { 
-  width: 100px;
-  border-radius: 10px;
-} */
+.text-wrap {
+  word-wrap:break-word ;
+}
 
 .inputT {
   border: 1px solid #cccccc;
@@ -158,20 +177,116 @@ margin-left: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+ 
 }
 
 .ItemLarge__Reverse {
   flex-direction: row-reverse;
 }
 
-.ImageLarge {
-  max-height: 700px;
-  min-height: 560px;
+.VideoMain{
+ 
+  text-align: center;
+}
+
+.Vv{
+  justify-items: center;
+  justify-content: center;
+  padding-left: 210px;
+}
+
+.imageM{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position	: relative;
+	width		: 100%; /* for IE 6 */
+ 
+}
+
+h10 {
+	position	:absolute;
+	top		: 200px;
+	left		: 0px;
+	width		: 100%;
+ display: flex;
+ justify-content:space-around;
+  text-size-adjust: 20px;
+  color: #f8f5f5;
+}
+
+
+
+.imgg{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+
+   .scale {
+    display: inline-block; /* Строчно-блочный элемент */
+    overflow: hidden; /* Скрываем всё за контуром */
+    margin: 40px;
+   }
+   .scale img {
+    transition: 1s; /* Время эффекта */
+   
+   }
+   .scale img:hover {
+    transform: scale(1.2); /* Увеличиваем масштаб */
+   }
+   
+   .ContBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+   }
+
+.btnkk{
+  color: #232323;
+    background: transparent;
+    border: 1px solid #232323;
+    position: relative;
+    font-size: 14px;
+    letter-spacing: .3em;
+    font-family: 'Montserrat', sans-serif;
+    padding: 17px 34px 17px 39px;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+}
+
+.btnkk:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 100%;
+  height: 100%;
+  background: #759fa3;
+  z-index: -1;
+  transition: .25s ease;
+  transform: translate(0, 0);
+}
+.btnkk:hover:before {
+  transform: translate(4px, 4px);
+}
+
+.TextItemL{
+display: flex;
+text-align: center;
+
 }
 
 .InfoLarge {
   display: flex;
   flex-direction: column;
+  text-align: center;
+ 
+  font-size: 20px;
+ 
 }
 
 .ItemSmall__Container {
@@ -206,13 +321,6 @@ margin-left: 100px;
   margin: 3rem;
 }
 
-.a {
-  color: rgb(255, 255, 255); /* Цвет текста */
-  transition: 1s linear; /* Время изменения */
- }
- a:hover {
-  color: rgb(88, 61, 209); /* Цвет текста */
- }
 
  .TitlT{
   text-align: center;
@@ -223,3 +331,27 @@ margin-left: 100px;
   text-align: center;
   font-size: 25px;
  }
+
+ .MainImg{
+  justify-content: center;
+  padding: 0%;
+  display: flex;
+  width: 1903px;
+  height: 1000px;
+ }
+
+ .hh{
+   text-align: center;
+  justify-content: center;
+  padding-left: 30%;
+  padding-right: 30%;
+ }
+
+ .MainImgmin{
+  justify-content: center;
+  padding-left: 37%;
+  display: flex;
+  padding-top: 20px;
+ }
+
+ 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useStore from "../store/mainStore";
+import ItemSmall from "../components/ItemSmall";
 import Link from "next/link";
 
 import firebase from "firebase/app";
@@ -28,7 +29,9 @@ const collectionRef = firestore.collection("orders");
 const account = () => {
   const [user] = useAuthState(auth);
   const model = useStore((state) => state.model);
-  const [orderSent, setOrderSent] = useState(false);
+  const orderedModels = useStore((state) => state.orderedModels);
+  const addModel = useStore((state) => state.addModel);
+  const favorites = useStore((state) => state.favorites);
 
   const submitOrder = async () => {
     const { uid, email, phoneNumber, displayName } = auth.currentUser;
@@ -43,65 +46,89 @@ const account = () => {
         phoneNumber,
         displayName,
       });
-      setOrderSent(true);
+      addModel(model.title);
     } catch (e) {
       console.log(e);
     }
   };
 
+  const getTotal = () => {
+    let total = model.cost;
+    if (model.engine?.cost) {
+      total += model.engine?.cost;
+    }
+    if (model.comp?.cost) {
+      total += model.comp?.cost;
+    }
+    return total;
+  };
+
   return (
     <>
       <div className="accountP">
-        <div className="userBlock">
-          {user ? (
-            <div>
-              <div className="profileImage">
-                <img src={auth.currentUser.photoURL} />
+        <div className="account-main-block">
+          <div className="userBlock">
+            {user ? (
+              <div>
+                <div className="profileImage">
+                  <img src={auth.currentUser.photoURL} />
+                </div>
+                <h3>{auth.currentUser.displayName}</h3>
+                <h3>{auth.currentUser.email}</h3>
+                <h3>{auth.currentUser.phoneNumber}</h3>
+                <SignOut />
               </div>
-              <h3>{auth.currentUser.displayName}</h3>
-              <h3>{auth.currentUser.email}</h3>
-              <h3>{auth.currentUser.phoneNumber}</h3>
-              <SignOut />
-            </div>
+            ) : (
+              <SignIn />
+            )}
+          </div>
+          {model ? (
+            <>
+              <div className="orderBlock">
+                <h1>{model.title}</h1>
+                <img src={model.image} />
+                <h2>{model.price}</h2>
+                {!orderedModels.some((x) => x === model.title) && (
+                  <button
+                    disabled={!user}
+                    onClick={submitOrder}
+                    className="btnkk"
+                  >
+                    ЗАПИСАТЬСЯ КОНСУЛЬТАЦИЮ
+                  </button>
+                )}
+                {orderedModels.some((x) => x === model.title) && (
+                  <h1>Заявка отправлена</h1>
+                )}
+              </div>
+              <div className="confBlock">
+                <h2>Конфигурация</h2>
+                <h3 className="text-wrap">{`Двигатель: ${model.engine?.title || "Стандартный"}`} </h3>
+                <h3>
+                  {`Комплектация: ${model.comp?.title || "Минимальная"}`}{" "}
+                </h3>
+                <h3>Итог: {getTotal()}</h3>
+              </div>
+            </>
           ) : (
-            <SignIn />
+            <div>
+              <h1> Вы можете выбрать модель для заказа консультации </h1>
+              <Link href="/shop">
+                <button className="btnkk" onClick={() => "/shop"}>
+                  Выбрать модель
+                </button>
+              </Link>
+            </div>
           )}
         </div>
-        {model ? (
-          <>
-            <div className="orderBlock">
-              <h1>{model.title}</h1>
-              <img src={model.image} />
-              <h2>{model.price}</h2>
-              {!orderSent && (
-                <button
-                  disabled={!user}
-                  onClick={submitOrder}
-                  className="orderButton"
-                >
-                  ЗАПИСАТЬСЯ КОНСУЛЬТАЦИЮ
-                </button>
-              )}
-              {orderSent && <h1>Заявка отправлена</h1>}
-            </div>
-            <div>
-              <h3>
-                Создавая новую Mazda, мы никогда не делаем кардинальных перемен,
-                но всегда вносим заметные и важные изменения. Каждое обновление
-                модели – это развитие лучших ее качеств. Поэтому обновление
-                любой модели Mazda – это не революция. Это эволюция. Прогресс от
-                лучшего к превосходному.
-              </h3>
-            </div>
-          </>
-        ) : (
-          <div>
-            <h1> Вы можете выбрать модель для заказа консультации </h1>
-            <Link href="/shop">
-              <li>Выбрать модель</li>
-            </Link>
+        <div className="FavoriteBlock">
+          <h3> Понравившиеся </h3>
+          <div className="">
+            {favorites.map((item, index) => (
+              <ItemSmall key={index} {...item} showButtons={false} />
+            ))}
           </div>
-        )}
+        </div>
       </div>
     </>
   );
@@ -114,11 +141,19 @@ const SignIn = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
   };
-  return <button onClick={signInWithGoogle}>Войти</button>;
+  return (
+    <button className="btnkk" onClick={signInWithGoogle}>
+      Войти
+    </button>
+  );
 };
 
 const SignOut = () => {
   return (
-    auth.currentUser && <button onClick={() => auth.signOut()}>Sign Out</button>
+    auth.currentUser && (
+      <button className="btnkk" onClick={() => auth.signOut()}>
+        Выйти
+      </button>
+    )
   );
 };

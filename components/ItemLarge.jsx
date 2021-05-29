@@ -15,8 +15,12 @@ const ItemLarge = (props) => {
       </div>
       <div className="InfoLarge">
         <h1>{title}</h1>
-        <h1>{price}</h1>
+        <h4 className="TextItemL">{price}</h4> 
+       
       </div>
+      
+     
+      
     </div>
   );
 };
