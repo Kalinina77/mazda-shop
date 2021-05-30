@@ -38,6 +38,7 @@ const ItemSmall = (props) => {
           <button className="btnkk" onClick={() => handleSelect()}>
             Выбрать
           </button>
+          <div><h4 ></h4></div>
           <button className="btnkk" onClick={() => handleFavoriteClick(id)}>
             {favorites.some((x) => x.id === id)
               ? "Удалить из избранного"
