@@ -30,6 +30,7 @@ const account = () => {
   const [user] = useAuthState(auth);
   const model = useStore((state) => state.model);
   const orderedModels = useStore((state) => state.orderedModels);
+  
   const addModel = useStore((state) => state.addModel);
   const favorites = useStore((state) => state.favorites);
 
@@ -94,12 +95,14 @@ const account = () => {
                     onClick={submitOrder}
                     className="btnkk"
                   >
-                    ЗАПИСАТЬСЯ КОНСУЛЬТАЦИЮ
+                    ЗАПИСАТЬСЯ НА КОНСУЛЬТАЦИЮ
                   </button>
+                  
                 )}
                 {orderedModels.some((x) => x === model.title) && (
                   <h1>Заявка отправлена</h1>
                 )}
+                  
               </div>
               <div className="confBlock">
                 <h2>Конфигурация</h2>
@@ -122,8 +125,8 @@ const account = () => {
           )}
         </div>
         <div className="FavoriteBlock">
-          <h3> Понравившиеся </h3>
-          <div className="">
+          <h1 className="taxtFavorit"> Понравившиеся </h1>
+          <div className="carsFa">
             {favorites.map((item, index) => (
               <ItemSmall key={index} {...item} showButtons={false} />
             ))}

@@ -4,6 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 import ReactPlayer from 'react-player';
 import Link from "next/link";
 
+
 export default function Home() {
   return (
     <div className="container">
@@ -59,9 +60,6 @@ export default function Home() {
             своей историей с Mazda и познакомьтесь с историями других
             владельцев.
           </h4>
-          <div className="ContBtn">
-            <button className="btnkk "  onClick={() => "/shop"}>Стать диллером</button>
-          </div>
          
         </div>
         <div class="imageM">

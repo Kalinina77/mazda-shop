@@ -104,15 +104,32 @@ img {
 .FavoriteBlock{
   display: flex;
   width: 100%;
+justify-content: center;
+flex-direction: column;
 
-  
+
+}
+
+.carsFa{
+  display: flex;
+flex-direction:row;
+justify-content: center;
+
+}
+.accountf{
+justify-content: center;
+}
+
+.taxtFavorit{
+text-align: center;
+
 }
 
 .userBlock{
 /* width: 30%; */
 min-width: 200px;
 flex-grow: 0;
-margin-right: 40px;
+margin-right: 190px;
 }
 
 .orderBlock{
@@ -121,11 +138,12 @@ display: flex;
 min-width: 500px;
 align-items: center;
 /* margin-left: 100px; */
+margin-right: 190px;
 }
 
 .confBlock {
   max-width: 400px;
-
+  margin-right: 90px;
 }
 
 .orderButton{
@@ -354,4 +372,32 @@ text-align: center;
   padding-top: 20px;
  }
 
+ .Opicanie{
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+ }
+
+ .configpp{
+  display: flex;
+  flex-direction: column;
+  padding: 15%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+ }
+
+ .textConf{
+  line-height: 0.5em;
+  background-color: #e4e0e0;
+ }
  
+ .linConf {
+  list-style-type: none;
+  margin-left: 20px;
+  cursor: pointer;
+  padding: 0.5em 0.7em;
+}
+.linConf :hover{
+  background-color: #0e0d0d8c;
+}
+
